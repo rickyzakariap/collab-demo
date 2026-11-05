@@ -22,3 +22,8 @@ node -e "console.log(require('./estimator').estimate({ price: 100000, hpp: 60000
 ```bash
 node --test
 ```
+
+## Kontributor
+
+- rickyzakariap
+- dzikrizulkifliID
