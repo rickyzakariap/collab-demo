@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator Margin Marketplace</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 520px; margin: 40px auto; padding: 0 16px; color: #111; }
+    h1 { font-size: 22px; }
+    label { display: block; margin-top: 12px; font-size: 14px; }
+    input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+    button { margin-top: 16px; padding: 10px 16px; border: 0; border-radius: 999px; background: #111; color: #fff; cursor: pointer; }
+    .result { margin-top: 20px; padding: 16px; border-radius: 16px; background: #f4f4f4; }
+  </style>
+</head>
+<body>
+  <h1>Kalkulator Margin Marketplace</h1>
+  <label>Harga jual <input id="price" type="number" value="100000"></label>
+  <label>HPP <input id="hpp" type="number" value="60000"></label>
+  <label>Ongkir <input id="shipping" type="number" value="10000"></label>
+  <label>Kemasan <input id="packaging" type="number" value="2000"></label>
+  <label>Komisi marketplace (%) <input id="feePct" type="number" value="8"></label>
+  <button id="calc">Hitung</button>
+  <div class="result" id="result">Isi data lalu tekan Hitung.</div>
+  <script src="estimator.js"></script>
+  <script>
+    document.getElementById('calc').addEventListener('click', function () {
+      const value = function (id) { return document.getElementById(id).value; };
+      const result = estimate({
+        price: value('price'),
+        hpp: value('hpp'),
+        shipping: value('shipping'),
+        packaging: value('packaging'),
+        feePct: value('feePct')
+      });
+      document.getElementById('result').textContent =
+        'Komisi Rp' + result.fee.toLocaleString('id-ID') +
+        ', total biaya Rp' + result.cost.toLocaleString('id-ID') +
+        ', margin Rp' + result.margin.toLocaleString('id-ID') +
+        ' (' + result.marginPct + '%)';
+    });
+  </script>
+</body>
+</html>
